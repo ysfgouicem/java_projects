@@ -2,10 +2,10 @@ package sample;
 
 public class VernamCipher {
 
-    public String encrypt(String womeg, String key ) {
+    public String encrypt(String womeg, final  String key ) {
         String index="ABCDEFGHIJKLMNOPQRSTUVWXYZ",cipherText="" ;
         int a[][]=new int[womeg.length()][5],cipher[][]=new int[womeg.length()][5],v=0;int keyt[][]=new int[key.length()][5] ;
-        //for key to convert to binary digit
+        // key ==> binary digit
         for(int j=0;j<key.length();j++) {
             char c = key.charAt(j);
             String val = String.valueOf(c);
@@ -15,7 +15,7 @@ public class VernamCipher {
                 keyt[j][i] = p % 2;
                 p = p / 2;
             }}
-            //for plaintext to convert in to binary digit
+            // plaintext ==> binary digit
             for(int j=0;j<womeg.length();j++) {
             char c = womeg.charAt(j);
             String value=String.valueOf(c);
@@ -25,7 +25,7 @@ public class VernamCipher {
                     a[j][i]=p%2;
                 p=p/2;}
         }
-        //XOR operation
+            //XOR operation
         for(int j=0;j<womeg.length();j++) {
             for (int i = 0; i <= 4; i++) {
                 if (a[j][i] == keyt[j][i]) {
@@ -46,10 +46,10 @@ public class VernamCipher {
     }
 
     public String findIndex(String test ) {
-        String letter[] = {"A", "B", "C", "D", "E", "F" ,"G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R","S", "T", "U", "V", "W", "X", "Y", "Z" };
+        String letters[] = {"A", "B", "C", "D", "E", "F" ,"G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R","S", "T", "U", "V", "W", "X", "Y", "Z" };
     String k;
-    for(int j=0; j<letter.length; j++){
-        if(test.equalsIgnoreCase(letter[j])){
+    for(int j=0; j<letters.length; j++){
+        if(test.equalsIgnoreCase(letters[j])){
             k=String.valueOf(j);
         return k;
         }
@@ -57,7 +57,5 @@ public class VernamCipher {
         return null;
     }
 
-    public int generatekey() {
-        return 0 ;
-    }
+
 }

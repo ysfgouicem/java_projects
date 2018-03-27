@@ -2,7 +2,7 @@ package sample;
 
 public class CaesarCipher {
 
-    public String encrypt(String m , int shift) {
+    public String encrypt(String m , final int shift) {
             if (shift<0 || shift>25 || m.length()<=0){
                 return null ;
             }
@@ -19,7 +19,7 @@ public class CaesarCipher {
         return s;
     }
 
-    public  String Decrypt(String  m , int key) {
+    public  String Decrypt(String  m , final int key) {
         String dm = "";
         char ch ;
         for(int i = 0; i < m.length(); ++i){
@@ -52,8 +52,4 @@ public class CaesarCipher {
         return dm ;
     }
 
-
-    public int generatekey() {
-        return 0 ;
-    }
 }

@@ -1,2 +1,2 @@
 # java_projects
-Problems taken and solved from https://github.com/karan/Projects
+Problems taken and solved from https://github.com/karan/Projects.

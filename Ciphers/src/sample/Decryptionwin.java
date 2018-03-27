@@ -24,16 +24,24 @@ public class Decryptionwin {
         window.setMinHeight(250);
         Button decrypt = new Button("Decrypt");
         decrypt.setOnAction( e-> {
+            String a="" ;
             if (textField.getLength()<1){
-                AlertBox.display(" ALERT !", "Empty key!! , please enter number");
+                AlertBox.display(" ALERT !", "Empty key!! , please enter a key ");
             }
             else if (choiceBox.getValue().equals("Caesar Cipher")) {
                 CaesarCipher cc = new CaesarCipher() ;
-                //convert the textarea string to an int
-                String a = cc.Decrypt(message,Integer.parseInt(textField.getText())) ;
-                AlertBox.display(" Decrypted message !", a);
+                    //convert the textarea string to an int before decrypting
+                try {
+                    a = cc.Decrypt(message, Integer.parseInt(textField.getText()));
+                }
+                catch (Exception exception) {
+                    AlertBox.display("ERROR", "Something went wrong try entering another key ");
+                }
+                
             }
             else if (choiceBox.getValue().equals("Vigenère Cipher")){
+                ViginereCipher vc = new ViginereCipher();
+                a = vc.Decrypt(message, textField.getText().toUpperCase());
                 System.out.print("vigenere");
             }
 
@@ -41,14 +49,14 @@ public class Decryptionwin {
                 System.out.print("Vernam");
                 VernamCipher vc = new VernamCipher();
                 try {
-                String a = vc.encrypt(message , textField.getText()) ;
-                AlertBox.display(" Deccrypted msg!", a);
+                 a = vc.encrypt(message , textField.getText()) ;
+
             }
             catch (Exception exception) {
                 AlertBox.display("ERROR", "Something went wrong try entering another key ");
             }
             }
-
+            AlertBox.display(" Deccrypted msg!", a);
         });
         Button closeButton = new Button("cancel");
         closeButton.setOnAction(e -> window.close());

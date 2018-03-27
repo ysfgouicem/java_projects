@@ -25,29 +25,33 @@ public class Encryptionwin {
         window.setMinHeight(300);
         Button submit = new Button("encrypt");
         submit.setOnAction(e->  {
+            String a= "";
             if (textField.getLength()<1){
                 AlertBox.display(" ALERT !", "Empty key!! , please enter number");
             }
            else if (choiceBox.getValue().equals("Caesar Cipher")){
             CaesarCipher cc = new CaesarCipher() ;
-            // need to  convert textfield into int ( used 3 for example )
+
+
                 try {
-                    String a = cc.encrypt(message, Integer.parseInt(textField.getText()));
-                    AlertBox.display(" Encrypted msg!", a);}
+                     a = cc.encrypt(message, Integer.parseInt(textField.getText()));
+                    }
                 catch (Exception exception) {
                     AlertBox.display("ERROR", "Something went wrong try entering another key ");
                 }}
 
 
             else if (choiceBox.getValue().equals("Vigenère Cipher")){
-                System.out.print("vigenere");
+                ViginereCipher vc = new ViginereCipher();
+                 a = vc.encrypt(message , textField.getText().toUpperCase());
             }
 
             else {
               VernamCipher vc = new VernamCipher();
-              String a = vc.encrypt(message , textField.getText()) ;
-                AlertBox.display(" Encrypted msg!", a);
+               a = vc.encrypt(message , textField.getText()) ;
+
             }
+            AlertBox.display(" Encrypted msg!", a);
         });
         Button closeButton = new Button("cancel");
         closeButton.setOnAction(e -> window.close());
